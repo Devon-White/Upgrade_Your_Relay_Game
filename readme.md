@@ -204,7 +204,7 @@ client.on("call.received", async (call) => {
 });
 ```
 
-#### Playing TTS Over Audio
+### Playing TTS Over Audio
 
 In our next Voice example, let’s look at how you might utilize text-to-speech. In the deprecated (v2) RELAY SDK, **playTTS** was 
 available as an asynchronous or synchronous function. In the synchronous version, we can simply allow the script to move
@@ -306,7 +306,7 @@ client.on("call.received", async (call) => {
 });
 ```
 
-#### Recording a Call
+### Recording a Call
 
 For our final Voice example, let’s look at how we could utilize the Call Recording method. RELAY v2 SDK provided
 synchronous and asynchronous call recording methods while the v3 version remains to only have synchronous methods.
@@ -410,13 +410,13 @@ client.on("call.received", async (call) => {
 ```
 
 
-### Messaging
+## Messaging
 
 Messaging is much less complex than Voice because the only interactive methods available are sending and receiving. So, 
 let’s look at the differences in examples of outbound messages, inbound messages, and forwarding messages.
 
 
-#### Sending a Message
+### Sending a Message
 
 In our v2 example, we used a RelayClient to send the SMS and, if successful, logged the message id.
 
@@ -470,7 +470,7 @@ main().catch(console.error)
 ```
 
 
-#### Receiving a Message
+### Receiving a Message
 
 With the old v2 version of the SDK, you would listen for incoming messages with a Consumer. If we wanted to send an 
 automatic SMS response, we'd have to access the send method within **onIncomingMessage** with **consumer.client.messaging.send**.
