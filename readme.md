@@ -57,8 +57,6 @@ const consumer = new RelayConsumer({
 consumer.run()
 ```
 
-#### v3 Realtime Relay SDK Example:
-
 Conversely, the newer Realtime SDK shifts connection management responsibility to the client object. This transfer of 
 control enables developers to manage their connections manually, thus affording a higher level of flexibility and 
 specificity. This change also makes it possible for developers to create different client objects for various services 
@@ -67,6 +65,7 @@ settings and handlers are necessary for different application aspects.
 
 This approach offers developers increased control over their connections and their interaction with the SignalWire API.
 
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import { Voice, Messaging } from "@signalwire/realtime-api";
 
@@ -100,12 +99,8 @@ methods as we demonstrate how to make, receive, and record calls. We will even l
 text-to-speech messages over an audio track. Then you can mix-and-match any of these methods to best suit your needs.
 
 ### Making a Call
-
-
-
 In the previous version (v2) of the RELAY SDK, Voice API interactions were performed and handled via a **RelayConsumer**, tasked with managing 
 real-time calling events. The following v2 example demonstrates how a call might have been made using a Consumer.
-
 
 #### v2 Node Relay SDK Example:
 ```javascript
@@ -159,10 +154,11 @@ async function main() {
 main().catch(console.error)
 ```
 
-#### Receiving a Call
+### Receiving a Call
+When receiving a call with the deprecated (v2) RELAY SDK, we could use our Consumer to set up an event listener to listen
+for incoming calls.
 
-When receiving a call with the deprecated (v2) RELAY SDK, we could use our Consumer to set up an event listener to listen for incoming calls.
-
+#### v2 Node Relay SDK Example:
 ```javascript
 import { RelayConsumer } from '@signalwire/node'
 
@@ -186,6 +182,7 @@ consumer.run()
 Inbound calls with the (v3) Realtime-Relay version do not require a Consumer but instead put a **call.received** event 
 listener directly on the namespace Client.
 
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import { Voice } from "@signalwire/realtime-api";
 
@@ -235,7 +232,7 @@ let firstTTS = true
 Once the first **playTTSAsync** event has been passed to us, we then set **firstTTS** to false, so the next event will point
 to the correct part of the code. Example Below:
 
-
+#### v2 Node Relay SDK Example:
 ```javascript
 import { RelayConsumer } from '@signalwire/node'
 
@@ -277,8 +274,7 @@ being able ot utilize the **waitForEnded** (which is now **ended**) method direc
 when the **playTTS** is finished before moving forward to the next logic within our code. This results in a much simpler syntax and
 more granular control of the call.
 
-Example:
-
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import { Voice } from "@signalwire/realtime-api";
 
@@ -323,6 +319,7 @@ recording url and then end the call with the **hangup** method.
 In the below example, we will be utilizing the **recordAsync** method, therefore we will need to add another event listener
 for when a recording has ended.
 
+#### v2 Node Relay SDK Example:
 ```javascript
 import { RelayConsumer } from '@signalwire/node'
 
@@ -374,6 +371,7 @@ In the Realtime Relay (v3) SDK, this becomes a lot simpler to pull off. Like abo
 need to wait for the **playAction** to end with the **ended** method, which we will then follow up and stop the recording
 with the **stop** method.
 
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import { Voice } from "@signalwire/realtime-api";
 
@@ -422,6 +420,7 @@ let’s look at the differences in examples of outbound messages, inbound messag
 
 In our v2 example, we used a RelayClient to send the SMS and, if successful, logged the message id.
 
+#### v2 Node Relay SDK Example:
 ```javascript
 import { RelayConsumer } from '@signalwire/node'
 const client = new RelayClient({
@@ -448,6 +447,7 @@ main().catch(console.error);
 Our latest version creates a messaging Client, sends a message using the same syntax, and returns a promise with a 
 message result string rather than a success boolean.
 
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import { Messaging } from "@signalwire/realtime-api";
 
@@ -475,6 +475,7 @@ main().catch(console.error)
 With the old v2 version of the SDK, you would listen for incoming messages with a Consumer. If we wanted to send an 
 automatic SMS response, we'd have to access the send method within **onIncomingMessage** with **consumer.client.messaging.send**.
 
+#### v2 Node Relay SDK Example:
 ```javascript
 import { RelayConsumer } from '@signalwire/node'
 
@@ -504,7 +505,7 @@ consumer.run();
 
 
 The new Realtime SDK provides the same functionality with a simpler syntax.
-
+#### v3 Realtime Relay SDK Example:
 ```javascript
 import {Messaging} from "@signalwire/realtime-api";
 
